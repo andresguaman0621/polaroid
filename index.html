@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi princesa ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #f5e6ff;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(118, 75, 162, 0.2);
+            animation: fadeIn 1s ease-in;
+            border: 3px solid #d8b4fe;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #764ba2;
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .message-card {
+            background: #fef3ff;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #e9d5ff;
+        }
+
+        .message-card::before {
+            content: '💕';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            opacity: 0.1;
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-card h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .message-card p {
+            color: #444;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .polaroid-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .polaroid-section h2 {
+            color: #764ba2;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        .polaroid-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px;
+            padding-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .polaroid:nth-child(2) {
+            transform: rotate(3deg);
+            animation-delay: 1s;
+        }
+
+        .polaroid:nth-child(3) {
+            transform: rotate(-3deg);
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-2deg);
+            }
+        }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .polaroid-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            background: #f0f0f0;
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .interactive-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .heart-button {
+            background: #f5576c;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .heart-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        .hidden-message {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: #fff4ed;
+            border-radius: 20px;
+            margin-top: 20px;
+            border: 2px solid #fed7aa;
+        }
+
+        .hidden-message.show {
+            max-height: 500px;
+            padding: 30px;
+        }
+
+        .hidden-message p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .halloween-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: #fff7ed;
+            border-radius: 20px;
+            border: 3px solid #ffedd5;
+        }
+
+        .halloween-section h3 {
+            color: #ea580c;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .trick-or-treat-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .treat-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(234, 88, 12, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #ffedd5;
+            width: 200px;
+        }
+
+        .treat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+            border-color: #ea580c;
+        }
+
+        .treat-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .treat-title {
+            font-size: 1.2em;
+            color: #ea580c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .treat-message {
+            display: none;
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ffedd5;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #764ba2;
+        }
+
+        .footer p {
+            color: #764ba2;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: rise 4s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .polaroid-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .polaroid {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Para mi princesa ❤️</h1>
+            <p>Un mensaje especial de mi corazón al tuyo</p>
+        </div>
+
+        <div class="message-card">
+            <h3>🌟 Mi Promesa de Seguridad</h3>
+            <p>
+                Mi amor, entiendo tus sentimientos y quiero que sepas algo importante: la seguridad y tranquilidad 
+                que te doy como tu novio no están en palabras, están en mis acciones. Cada día te demuestro con 
+                hechos que eres mi prioridad, mi única, mi todo. Este viaje es solo con mi familia, y aunque 
+                estaré lejos físicamente, mi corazón estará contigo en cada momento. No hay nada ni nadie en este 
+                mundo que pueda cambiar lo que siento por ti.
+            </p>
+        </div>
+
+        <div class="message-card">
+            <h3>💎 Eres Única e Irremplazable</h3>
+            <p>
+                No existe en este mundo otra persona como tú. Tu risa, tu forma de ser, cómo me haces sentir... 
+                nadie más puede darme lo que tú me das. Eres especial no porque lo diga, sino porque lo siento 
+                cada día. Tu amor, tu comprensión, tu forma de mirarme... todo eso es único. No te cambiaría por 
+                nada ni por nadie, porque simplemente no hay comparación. Tú eres MI persona, la única que quiero 
+                a mi lado. No hay espacio en mi corazón para dudas, porque está completamente lleno de ti.
+            </p>
+        </div>
+
+        <div class="message-card">
+            <h3>⏰ Son Solo Dos Días, Pero Te Extrañaré Como Si Fueran Mil</h3>
+            <p>
+                Sé que dos días pueden sentirse como una eternidad cuando estamos acostumbrados a vernos. Pero 
+                piénsalo así: estos dos días harán que nuestro reencuentro sea aún más especial. Cada hora que 
+                pase lejos de ti me hará valorarte aún más. Y cuando regrese, te abrazaré con todo el amor 
+                acumulado de estos días. La distancia temporal solo prueba que lo que tenemos es real y fuerte. 
+                Estaré pensando en ti constantemente, contando las horas para volver a verte.
+            </p>
+        </div>
+
+        <div class="message-card">
+            <h3>🔒 Tu Confianza Es Mi Tesoro Más Valioso</h3>
+            <p>
+                Me dijiste que confías en mí, y esas palabras son lo más valioso que me has dado. Protegeré esa 
+                confianza con mi vida. Entiendo que puedas tener un poco de miedo, es normal cuando amas tanto 
+                como tú me amas. Pero quiero que sepas que ese miedo no tiene fundamento conmigo. Soy tuyo, 
+                completamente. Mi compromiso contigo es inquebrantable. Cada acción mía, cada decisión que tomo, 
+                está guiada por el respeto y amor que te tengo. No hay situación, persona o circunstancia que 
+                pueda cambiar eso.
+            </p>
+        </div>
+
+        <div class="message-card">
+            <h3>🎃 Sobre Halloween y Nuestra Noche Perdida</h3>
+            <p>
+                Mi amor, sé que también estabas triste porque no pudimos salir para Halloween. Yo también lo 
+                estaba, porque quería pasar esa noche contigo, disfrazarnos juntos, tener nuevos recuerdos especiales. 
+                Pero quiero agradecerte de corazón por ser tan comprensiva conmigo. Tu comprensión significa 
+                todo para mí. Sé que esta vez fue diferente, que tuvimos que sacrificar nuestra salida por 
+                esta reunión, pero te prometo algo: no siempre será así. No todo el tiempo habrá 
+                reuniones que nos separen en fechas especiales. Habrá muchas mas fiestas para disfrutar. Esta es solo una excepción, no la regla. Tu paciencia y comprensión solo 
+                me hacen amarte más. ❤️
+            </p>
+        </div>
+
+        <div class="polaroid-section">
+            <h2>✨ Nuestros Momentos Especiales ✨</h2>
+            <p style="color: #666; margin-bottom: 30px; font-size: 1.1em;">
+                Estas fotos son un recordatorio de que lo nuestro es real, es fuerte, y es para siempre
+            </p>
+
+            <div class="polaroid-container">
+                <div class="polaroid">
+                    <img src="/img3.jpg" 
+                         alt="Foto 1" 
+                         class="polaroid-image" 
+                         id="photo1">
+                    <div class="polaroid-caption">Nuestro Amor ❤️</div>
+                </div>
+
+                <div class="polaroid">
+                    <img src="/img2.jpg" 
+                         alt="Foto 2" 
+                         class="polaroid-image" 
+                         id="photo2">
+                    <div class="polaroid-caption">Juntos Siempre 💕</div>
+                </div>
+
+                <div class="polaroid">
+                    <img src="/img1.jpg" 
+                         alt="Foto 3" 
+                         class="polaroid-image" 
+                         id="photo3">
+                    <div class="polaroid-caption">Mi Todo 💖</div>
+                </div>
+            </div>
+
+        
+        </div>
+
+        <div class="halloween-section">
+            <h3>🎃 Trick or Treat: Dulces Mensajes Para Ti 🍬</h3>
+            <p style="color: #666; margin-bottom: 20px; font-size: 1.1em;">
+                Aunque no pudimos salir en Halloween, aquí hay algunos "treats" especiales para ti. 
+                Haz click en cada uno para descubrir un mensaje 💝
+            </p>
+
+            <div class="trick-or-treat-container">
+                <div class="treat-box" onclick="revealTreat(1)">
+                    <div class="treat-icon">🍬</div>
+                    <div class="treat-title">Dulce 1</div>
+                    <div class="treat-message" id="treat1">
+                        Eres mi dulce favorito en la vida. No hay caramelo, chocolate ni golosina que se compare 
+                        a la dulzura que me das cada día con tu amor.
+                    </div>
+                </div>
+
+                <div class="treat-box" onclick="revealTreat(2)">
+                    <div class="treat-icon">🍫</div>
+                    <div class="treat-title">Dulce 2</div>
+                    <div class="treat-message" id="treat2">
+                        Habrá muchos Halloweens más para nosotros. Y te prometo que los próximos los pasaremos 
+                        juntos, creando recuerdos increíbles. Esto es solo el comienzo.
+                    </div>
+                </div>
+
+                <div class="treat-box" onclick="revealTreat(3)">
+                    <div class="treat-icon">🎃</div>
+                    <div class="treat-title">Dulce 3</div>
+                    <div class="treat-message" id="treat3">
+                        Tu comprensión y paciencia me demuestran una vez más por qué eres la persona perfecta para mí. 
+                        Gracias por entender, mi amor. Te compensaré, lo prometo.
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px; color: #ea580c; font-size: 1.1em; font-weight: bold;">
+                🧡 ¡Feliz Halloween diferente, mi amor! La próxima vez será nuestro momento 🧡
+            </p>
+        </div>
+
+        <div class="interactive-section">
+            <button class="heart-button" onclick="revealMessage()">
+                💌 Haz Click Para Un Mensaje Especial 💌
+            </button>
+
+            <div class="hidden-message" id="hiddenMessage">
+                <p>
+                    <strong>Mi amor hermoso,</strong><br><br>
+                    
+                    Mientras lees esto, quiero que sientas todo el amor que te tengo. No importa dónde esté, 
+                    mi corazón siempre está contigo. Estos dos días pasarán volando, y cuando regrese, te voy 
+                    a demostrar aún más cuánto significas para mí.<br><br>
+                    
+                    Tu inseguridad es normal, pero te prometo que no tiene razón de ser. Soy tuyo, completamente. 
+                    No hay nadie más, no hay nada más. Solo tú. Y eso nunca va a cambiar.<br><br>
+                    
+                    Te amo con todo mi ser, con cada latido de mi corazón, con cada respiración. Eres mi presente 
+                    y mi futuro. Mi todo.<br><br>
+                    
+                    Nos vemos pronto, mi amor. Te extraño ya.<br><br>
+                    
+                    <strong>Tuyo siempre y para siempre,<br>
+                    Tu novio que te ama más que a nada en este mundo ❤️</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="message-card" style="background: #fff4ed; border-color: #fed7aa;">
+            <h3>🌈 Recuerda Siempre</h3>
+            <p>
+                • Soy tuyo y de nadie más<br>
+                • Mi amor por ti crece cada día<br>
+                • No hay nada que pueda cambiar lo que siento<br>
+                • Estas 48 horas pasarán rápido<br>
+                • Te estaré pensando todo el tiempo<br>
+                • Nuestro amor es más fuerte que cualquier distancia<br>
+                • Eres la única mujer en mi vida y en mi corazón<br>
+                • Te amo más de lo que las palabras pueden expresar
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Con todo mi amor, hoy y siempre ❤️✨</p>
+            <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
+                "La distancia es solo una prueba de que nuestro amor puede viajar kilómetros"
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Función para revelar el mensaje oculto
+        function revealMessage() {
+            const message = document.getElementById('hiddenMessage');
+            message.classList.toggle('show');
+            createHeartBurst();
+        }
+
+        // Función para revelar los "treats" de Halloween
+        function revealTreat(number) {
+            const treat = document.getElementById('treat' + number);
+            if (treat.style.display === 'block') {
+                treat.style.display = 'none';
+            } else {
+                treat.style.display = 'block';
+                createHeartBurst();
+            }
+        }
+
+        // Crear explosión de corazones
+        function createHeartBurst() {
+            const container = document.getElementById('floatingHearts');
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    container.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+
+        // Crear corazones flotantes aleatorios cada cierto tiempo
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const container = document.getElementById('floatingHearts');
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = '0s';
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+        }, 3000);
+
+        // Efecto de hover en las tarjetas de mensaje
+        document.querySelectorAll('.message-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.background = '#fff4ed';
+                setTimeout(() => {
+                    this.style.background = '#fef3ff';
+                }, 300);
+            });
+        });
+
+        // INSTRUCCIONES PARA CAMBIAR LAS FOTOS:
+        // Para cambiar las fotos, simplemente cambia los URLs en las siguientes líneas:
+        // document.getElementById('photo1').src = 'TU_URL_AQUI';
+        // document.getElementById('photo2').src = 'TU_URL_AQUI';
+        // document.getElementById('photo3').src = 'TU_URL_AQUI';
+        
+        // Ejemplo de cómo cambiar las fotos (descomenta y modifica estas líneas):
+        // document.getElementById('photo1').src = 'https://ejemplo.com/tu-foto-1.jpg';
+        // document.getElementById('photo2').src = 'https://ejemplo.com/tu-foto-2.jpg';
+        // document.getElementById('photo3').src = 'https://ejemplo.com/tu-foto-3.jpg';
+    </script>
+</body>
+</html>
